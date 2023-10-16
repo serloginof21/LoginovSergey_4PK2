@@ -80,7 +80,11 @@ namespace PZ_9
             Console.WriteLine($"Адрес второго региона: {regionTwo}");
             ZeroMemory(regionOne, (int)page_size);
             Console.WriteLine("Выводим содержимое первого региона: " + Marshal.ReadByte(regionOne));
-            FillMemory(regionTwo, (int)page_size, 128);
+
+            Random rnd = new Random();
+            byte value1 = Convert.ToByte(rnd.Next(0, 127));
+
+            FillMemory(regionTwo, (int)page_size, value1);
             Console.WriteLine("Выводим содержимое второго региона: " + Marshal.ReadByte(regionTwo));
         }
     }
