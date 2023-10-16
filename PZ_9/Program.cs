@@ -60,11 +60,14 @@ namespace PZ_9
             Marshal.Copy(buffer, 0, address, size);
         }
 
-        static void FillMemory(IntPtr address, int size, byte value)
+        static void FillMemory(IntPtr address, int size)
         {
+            Random rnd = new Random();
+            byte value1 = Convert.ToByte(rnd.Next(0, 127));
+
             byte[] buffer = new byte[size];
             for (int i = 0; i < size; i++)
-                buffer[i] = value;
+                buffer[i] = value1;
 
             Marshal.Copy(buffer, 0, address, size);
         }
@@ -84,7 +87,7 @@ namespace PZ_9
             Random rnd = new Random();
             byte value1 = Convert.ToByte(rnd.Next(0, 127));
 
-            FillMemory(regionTwo, (int)page_size, value1);
+            FillMemory(regionTwo, (int)page_size);
             Console.WriteLine("Выводим содержимое второго региона: " + Marshal.ReadByte(regionTwo));
         }
     }
