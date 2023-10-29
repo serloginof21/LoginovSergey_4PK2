@@ -98,6 +98,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    HDC hDC; // Контекст устройства
+    PAINTSTRUCT ps;
+    RECT rect;
+
+    static COLORREF backgroundColor = RGB(191, 21, 92); // Исходный цвет заливки окна
+
     switch (message)
     {
     case WM_COMMAND:
@@ -118,37 +124,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     break;
     case WM_PAINT:
     {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
+        hDC = BeginPaint(hWnd, &ps);
+        GetClientRect(hWnd, &rect);
+
         HFONT hFont = CreateFont(
-            20,                   // Высота шрифта
-            0,                    // Ширина символов (0 - авто)
-            0,                    // Угол наклона (0 - нормальный)
-            0,                    // Угол поворота (0 - нормальный)
-            FW_NORMAL,            // Толщина шрифта (FW_NORMAL - нормальный)
-            FALSE,                // Курсив
-            FALSE,                // Подчеркивание
-            FALSE,                // Зачеркивание
-            ANSI_CHARSET,         // Набор символов
-            OUT_TT_PRECIS,        // Точность вывода
-            CLIP_DEFAULT_PRECIS,  // Точность отсечения
-            ANTIALIASED_QUALITY,  // Качество шрифта
-            FF_MODERN,            // Семейство шрифта
-            L"Calibry"              // Имя шрифта
+            20, // Высота шрифта
+            0, // Ширина символов (0 - авто)
+            0, // Угол наклона (0 - нормальный)
+            0, // Угол поворота (0 - нормальный)
+            FW_NORMAL, // Толщина шрифта (FW_NORMAL - нормальный)
+            FALSE, // Курсив
+            FALSE, // Подчеркивание
+            FALSE, // Зачеркивание
+            ANSI_CHARSET, // Набор символов
+            OUT_TT_PRECIS, // Точность вывода
+            CLIP_DEFAULT_PRECIS, // Точность отсечения
+            ANTIALIASED_QUALITY, // Качество шрифта
+            FF_MODERN, // Семейство шрифта
+            L"Calibry" // Имя шрифта
         );
+
         // Выбор созданного шрифта
-        HFONT hOldFont = (HFONT)SelectObject(hdc, hFont);
+        HFONT hOldFont = (HFONT)SelectObject(hDC, hFont);
         //цвет текста
-        SetTextColor(hdc, RGB(0, 0, 0));
-        // вывыод текста
-        TextOut(hdc, 10, 10, L"Hello, PZ 14", 13);
-        // Восстанавление предыдущего шрифта
-        SelectObject(hdc, hOldFont);
+        SetTextColor(hDC, RGB(255, 255, 255));
+        // Задайте цвет фона окна
+        SetBkColor(hDC, backgroundColor);
+        // Вывод текста
+        DrawText(hDC, TEXT("ПЗ 14"), -1, &rect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+        // Восстановление предыдущего шрифта
+        SelectObject(hDC, hOldFont);
         // Удаление созданного шрифта
         DeleteObject(hFont);
         EndPaint(hWnd, &ps);
     }
     break;
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
@@ -157,4 +168,3 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return 0;
 }
-
