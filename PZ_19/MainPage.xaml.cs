@@ -25,11 +25,16 @@ namespace PZ_19
         public MainPage()
         {
             this.InitializeComponent();
+            if (!splitView.IsPaneOpen)
+            {
+                activeBox.Text = "Не активно";
+            }
         }
 
         private void btn1Click(object sender, RoutedEventArgs e)
         {
             splitView.IsPaneOpen = !splitView.IsPaneOpen;
+            activeBox.Text = splitView.IsPaneOpen ? "Активно" : "Не активно";
         }
     }
 }

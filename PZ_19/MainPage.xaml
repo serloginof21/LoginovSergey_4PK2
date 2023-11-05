@@ -18,6 +18,7 @@
                     <Rectangle Fill="Blue" Width="350" Height="50"/>
                     <Rectangle Fill="Green" Width="350" Height="50"/>
                     <Rectangle Fill="Purple" Width="350" Height="50"/>
+                     
                 </StackPanel>
             </SplitView.Pane>
 
@@ -32,11 +33,15 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Button x:Name="btn1" Click="btn1Click" 
                     Content="Переключить" HorizontalAlignment="Center" 
                     Height="80" Width="200" FontSize="25" Grid.Column="1"/>
-                    
+
+                    <TextBox x:Name="activeBox" Margin="10"
+                    RelativePanel.LeftOf="loginButton"
+                    RelativePanel.AlignLeftWithPanel="True" Grid.Column="2" Grid.Row="1"/>
+
                 </Grid>
             </SplitView.Content>
         </SplitView>
