@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="PZ_21.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PZ_21"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="ParentGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" FontSize="20px" Text="Имя: MyGrid" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   Grid.ColumnSpan="2"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Name:" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="20px"/>
+        <TextBox x:Name="user" Grid.Row="1" Grid.Column="1" Width="500" 
+                 Height="90" FontSize="40" Padding="3"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Actyal Width:" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="20px"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" 
+                   Text="{Binding ElementName=ParentGrid, Path=ActualHeight}" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="20px"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Actyal Height:" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="20px"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" 
+                   Text="{Binding ElementName=ParentGrid, Path=ActualWidth}" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="20px"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Desired size:" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="20px"/>
+        <TextBlock x:Name="DesiredSize" Grid.Row="4" Grid.Column="1" 
+                   Text="{Binding ElementName=ParentGrid, Path=DesiredSize}" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   FontSize="20px"/>
+
+        <Button x:Name="btn" Grid.Row="5" Grid.Column="1" Width="400" 
+                Height="100" Content="submit" FontSize="20" 
+                HorizontalAlignment="Right" Click="btn_Click"/>
+
+    </Grid>
+</Page>
