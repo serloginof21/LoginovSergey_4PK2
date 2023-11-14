@@ -49,5 +49,10 @@ namespace PZ_23
             url_txt.Text = mfi.Text;
             webView.Navigate(new Uri("https://www." + url_txt.Text));
         }
+
+        private void DropDownButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

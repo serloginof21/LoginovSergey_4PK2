@@ -5,10 +5,41 @@
     xmlns:local="using:PZ_24"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary Source="Dictionary1.xaml"/>
+    </Page.Resources>
+    
 
     <Grid>
+        <Grid Margin="10,0,0,10" KeyDown="OnKeyDown" 
+              Background="{StaticResource grayStyle}">
+            <WebView x:Name="webView" Source="https://www.microsoft.com" 
+                     Margin="0,84,0,0" Grid.ColumnSpan="2"/>
+            <DropDownButton Content="Избранное" Margin="751,2,0,0" 
+                            VerticalAlignment="Top" Height="79" Width="163" 
+                            Foreground="Black">
+                <DropDownButton.Flyout>
+                    <MenuFlyout x:Name="menu_favorite" Placement="Bottom" >
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <Button x:Name="favorite_btn" Content="*" FontSize="52" Height="79" 
+                    Width="104" Margin="643,0,0,0" VerticalAlignment="Top" 
+                    Click="favorite_btn_Click" Foreground="Black"/>
 
+            <Button x:Name="myButton" Content="Ресурсы UWP" Foreground="Black"
+                    Background="{StaticResource buttonBrush}" VerticalAlignment="Top" 
+                    Margin="919,2,0,0" Height="79" Width="131" Click="Fade_Click">
+                <Button.Resources>
+                    <SolidColorBrush x:Key="darkStyle" Color="Gray" />
+                </Button.Resources>
+            </Button>
+
+            <TextBox x:Name="url_txt" HorizontalAlignment="Left" FontSize="42" 
+                     TextWrapping="Wrap" Text="" VerticalAlignment="Top" 
+                     Height="79" Width="635"/>
+        </Grid>
     </Grid>
 </Page>
